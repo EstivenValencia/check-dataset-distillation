@@ -1,0 +1,23 @@
+2025-03-12 20:39:49,992 INFO    MainThread:38849 [wandb_setup.py:_flush():67] Current SDK version is 0.19.8
+2025-03-12 20:39:49,992 INFO    MainThread:38849 [wandb_setup.py:_flush():67] Configure stats pid to 38849
+2025-03-12 20:39:49,992 INFO    MainThread:38849 [wandb_setup.py:_flush():67] Loading settings from /data/home/rtabares/.config/wandb/settings
+2025-03-12 20:39:49,992 INFO    MainThread:38849 [wandb_setup.py:_flush():67] Loading settings from /data/home/rtabares/.juan/mtt-distillation/wandb/settings
+2025-03-12 20:39:49,992 INFO    MainThread:38849 [wandb_setup.py:_flush():67] Loading settings from environment variables
+2025-03-12 20:39:49,993 INFO    MainThread:38849 [wandb_init.py:setup_run_log_directory():647] Logging user logs to /data/home/rtabares/.juan/mtt-distillation/wandb/run-20250312_203949-p89rqcjw/logs/debug.log
+2025-03-12 20:39:49,993 INFO    MainThread:38849 [wandb_init.py:setup_run_log_directory():648] Logging internal logs to /data/home/rtabares/.juan/mtt-distillation/wandb/run-20250312_203949-p89rqcjw/logs/debug-internal.log
+2025-03-12 20:39:49,993 INFO    MainThread:38849 [wandb_init.py:init():761] calling init triggers
+2025-03-12 20:39:49,993 INFO    MainThread:38849 [wandb_init.py:init():766] wandb.init called with sweep_config: {}
+config: {'dataset': 'CIFAR100', 'subset': 'imagenette', 'model': 'ConvNet', 'res': 128, 'ipc': 10, 'eval_mode': 'S', 'num_eval': 5, 'eval_it': 100, 'epoch_eval_train': 1000, 'Iteration': 5000, 'lr_img': 1000.0, 'lr_lr': 1e-05, 'lr_teacher': 0.01, 'lr_init': 0.01, 'batch_real': 256, 'batch_syn': None, 'batch_train': 256, 'pix_init': 'real', 'dsa': True, 'dsa_strategy': 'color_crop_cutout_flip_scale_rotate', 'data_path': 'cifar100/images_db', 'buffer_path': 'cifar100/expertdb', 'expert_epochs': 2, 'syn_steps': 20, 'max_start_epoch': 20, 'zca': True, 'load_all': False, 'no_aug': False, 'texture': False, 'canvas_size': 2, 'canvas_samples': 1, 'max_files': None, 'max_experts': None, 'force_save': False, 'device': 'cuda', 'zca_trans': ZCAWhitening(), 'im_size': (32, 32), 'dc_aug_param': None, 'dsa_param': <utils.ParamDiffAug object at 0x7f2a190a03d0>, '_wandb': {}}
+2025-03-12 20:39:49,993 INFO    MainThread:38849 [wandb_init.py:init():784] starting backend
+2025-03-12 20:39:49,993 INFO    MainThread:38849 [wandb_init.py:init():788] sending inform_init request
+2025-03-12 20:39:49,999 INFO    MainThread:38849 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-03-12 20:39:49,999 INFO    MainThread:38849 [wandb_init.py:init():798] backend started and connected
+2025-03-12 20:39:50,006 INFO    MainThread:38849 [wandb_init.py:init():891] updated telemetry
+2025-03-12 20:39:50,040 INFO    MainThread:38849 [wandb_init.py:init():915] communicating run to backend with 90.0 second timeout
+2025-03-12 20:39:50,436 INFO    MainThread:38849 [wandb_init.py:init():990] starting run threads in backend
+2025-03-12 20:39:50,520 INFO    MainThread:38849 [wandb_run.py:_console_start():2375] atexit reg
+2025-03-12 20:39:50,520 INFO    MainThread:38849 [wandb_run.py:_redirect():2227] redirect: wrap_raw
+2025-03-12 20:39:50,520 INFO    MainThread:38849 [wandb_run.py:_redirect():2292] Wrapping output streams.
+2025-03-12 20:39:50,520 INFO    MainThread:38849 [wandb_run.py:_redirect():2315] Redirects installed.
+2025-03-12 20:39:50,522 INFO    MainThread:38849 [wandb_init.py:init():1032] run started, returning control to user process
+2025-03-12 20:45:01,528 INFO    MsgRouterThr:38849 [mailbox.py:close():129] Closing mailbox, abandoning 1 handles.

@@ -1,0 +1,108 @@
+_wandb:
+    value:
+        cli_version: 0.19.8
+        m: []
+        python_version: 3.11.11
+        t:
+            "1":
+                - 1
+                - 41
+                - 55
+                - 79
+            "2":
+                - 1
+                - 41
+                - 55
+                - 79
+            "3":
+                - 16
+                - 23
+                - 55
+                - 61
+            "4": 3.11.11
+            "5": 0.19.8
+            "8":
+                - 2
+                - 5
+            "12": 0.19.8
+            "13": linux-x86_64
+Iteration:
+    value: 5000
+batch_real:
+    value: 256
+batch_syn:
+    value: null
+batch_train:
+    value: 256
+buffer_path:
+    value: cifar100/expertdb
+canvas_samples:
+    value: 1
+canvas_size:
+    value: 2
+data_path:
+    value: cifar100/images_db
+dataset:
+    value: CIFAR100
+dc_aug_param:
+    value: null
+device:
+    value: cuda
+dsa:
+    value: true
+dsa_param:
+    value: <utils.ParamDiffAug object at 0x7fb562569990>
+dsa_strategy:
+    value: color_crop_cutout_flip_scale_rotate
+epoch_eval_train:
+    value: 1000
+eval_it:
+    value: 100
+eval_mode:
+    value: S
+expert_epochs:
+    value: 2
+force_save:
+    value: false
+im_size:
+    value:
+        - 32
+        - 32
+ipc:
+    value: 10
+load_all:
+    value: false
+lr_img:
+    value: 1000
+lr_init:
+    value: 0.01
+lr_lr:
+    value: 1e-05
+lr_teacher:
+    value: 0.01
+max_experts:
+    value: null
+max_files:
+    value: null
+max_start_epoch:
+    value: 20
+model:
+    value: ConvNet
+no_aug:
+    value: false
+num_eval:
+    value: 5
+pix_init:
+    value: real
+res:
+    value: 128
+subset:
+    value: imagenette
+syn_steps:
+    value: 20
+texture:
+    value: false
+zca:
+    value: true
+zca_trans:
+    value: ZCAWhitening()

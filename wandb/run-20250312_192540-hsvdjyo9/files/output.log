@@ -1,0 +1,1999 @@
+Hyper-parameters:
+ {'_wandb': {}, 'dataset': 'CIFAR10', 'subset': 'imagenette', 'model': 'ConvNet', 'res': 128, 'ipc': 10, 'eval_mode': 'S', 'num_eval': 5, 'eval_it': 100, 'epoch_eval_train': 1000, 'Iteration': 5000, 'lr_img': 1000.0, 'lr_lr': 1e-05, 'lr_teacher': 0.01, 'lr_init': 0.01, 'batch_real': 256, 'batch_syn': 100, 'batch_train': 256, 'pix_init': 'real', 'dsa': True, 'dsa_strategy': 'color_crop_cutout_flip_scale_rotate', 'data_path': 'cifar10/images_db', 'buffer_path': 'cifar10/expertdb', 'expert_epochs': 2, 'syn_steps': 30, 'max_start_epoch': 15, 'zca': True, 'load_all': False, 'no_aug': False, 'texture': False, 'canvas_size': 2, 'canvas_samples': 1, 'max_files': None, 'max_experts': None, 'force_save': False, 'device': 'cuda', 'zca_trans': ZCAWhitening(), 'im_size': [32, 32], 'dc_aug_param': None, 'dsa_param': <utils.ParamDiffAug object at 0x7f256d5b7510>, 'distributed': False}
+Evaluation model pool:  ['ConvNet']
+BUILDING DATASET
+  0%|                                                                                                                                                                           | 0/50000 [00:00<?, ?it/s]/data/home/rtabares/.juan/mtt-distillation/distill.py:91: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  labels_all.append(class_map[torch.tensor(sample[1]).item()])
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50000/50000 [00:00<00:00, 60539.14it/s]
+50000it [00:00, 4301850.26it/s]
+class c = 0: 5000 real images
+class c = 1: 5000 real images
+class c = 2: 5000 real images
+class c = 3: 5000 real images
+class c = 4: 5000 real images
+class c = 5: 5000 real images
+class c = 6: 5000 real images
+class c = 7: 5000 real images
+class c = 8: 5000 real images
+class c = 9: 5000 real images
+real images channel 0, mean = 0.0000, std = 0.2681
+real images channel 1, mean = 0.0000, std = 0.2532
+real images channel 2, mean = 0.0000, std = 0.2617
+/data/home/rtabares/.juan/mtt-distillation/distill.py:111: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  label_syn = torch.tensor([np.ones(args.ipc,dtype=np.int_)*i for i in range(num_classes)], dtype=torch.long, requires_grad=False, device=args.device).view(-1) # [0,0,0, 1,1,1, ..., 9,9,9]
+initialize synthetic data from random real images
+[2025-03-12 19:25:41] training begins
+Expert Dir: cifar10/expertdb/CIFAR10/ConvNet
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 0
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5}
+  0%|                                                                                                                                                                            | 0/1001 [00:00<?, ?it/s]/data/home/rtabares/.juan/env/lib/python3.11/site-packages/torch/functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:3637.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:08<00:00, 121.80it/s]
+[2025-03-12 19:25:50] Evaluate_00: epoch = 1000 train time = 8 s train loss = 0.001909 train acc = 1.0000, test acc = 0.3156
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.02it/s]
+[2025-03-12 19:25:57] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.005727 train acc = 1.0000, test acc = 0.3173
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 136.75it/s]
+[2025-03-12 19:26:05] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000518 train acc = 1.0000, test acc = 0.3077
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 136.49it/s]
+[2025-03-12 19:26:12] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.021067 train acc = 1.0000, test acc = 0.3144
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.38it/s]
+[2025-03-12 19:26:19] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.004552 train acc = 1.0000, test acc = 0.3143
+Evaluate 5 random ConvNet, mean = 0.3139 std = 0.0033
+-------------------------
+[2025-03-12 19:26:21] iter = 0000, loss = 1.1997
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:26:30] iter = 0010, loss = 0.7506
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:26:38] iter = 0020, loss = 0.9784
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:26:46] iter = 0030, loss = 0.9320
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:26:55] iter = 0040, loss = 0.9553
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:27:03] iter = 0050, loss = 0.7101
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:27:11] iter = 0060, loss = 0.9137
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:27:19] iter = 0070, loss = 0.8271
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:27:28] iter = 0080, loss = 0.9622
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:27:36] iter = 0090, loss = 0.6047
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 100
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.64it/s]
+[2025-03-12 19:27:50] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000493 train acc = 1.0000, test acc = 0.5284
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.05it/s]
+[2025-03-12 19:27:57] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000484 train acc = 1.0000, test acc = 0.5284
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 135.79it/s]
+[2025-03-12 19:28:05] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000721 train acc = 1.0000, test acc = 0.5227
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.41it/s]
+[2025-03-12 19:28:12] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.005772 train acc = 1.0000, test acc = 0.5319
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.76it/s]
+[2025-03-12 19:28:19] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.007431 train acc = 1.0000, test acc = 0.5361
+Evaluate 5 random ConvNet, mean = 0.5295 std = 0.0044
+-------------------------
+[2025-03-12 19:28:20] iter = 0100, loss = 0.9321
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:28:29] iter = 0110, loss = 0.6782
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:28:37] iter = 0120, loss = 0.6048
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:28:45] iter = 0130, loss = 0.8674
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:28:53] iter = 0140, loss = 0.9516
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:29:02] iter = 0150, loss = 0.6082
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:29:10] iter = 0160, loss = 0.9524
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:29:18] iter = 0170, loss = 0.9212
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:29:26] iter = 0180, loss = 0.8630
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:29:34] iter = 0190, loss = 0.7009
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 200
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.53it/s]
+[2025-03-12 19:29:49] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000396 train acc = 1.0000, test acc = 0.5909
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.98it/s]
+[2025-03-12 19:29:56] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000545 train acc = 1.0000, test acc = 0.5875
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.44it/s]
+[2025-03-12 19:30:03] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.004792 train acc = 1.0000, test acc = 0.5906
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.58it/s]
+[2025-03-12 19:30:10] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000261 train acc = 1.0000, test acc = 0.5975
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.51it/s]
+[2025-03-12 19:30:17] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.004287 train acc = 1.0000, test acc = 0.5886
+Evaluate 5 random ConvNet, mean = 0.5910 std = 0.0035
+-------------------------
+[2025-03-12 19:30:19] iter = 0200, loss = 0.9046
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:30:27] iter = 0210, loss = 0.6012
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:30:35] iter = 0220, loss = 0.9383
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:30:43] iter = 0230, loss = 0.9277
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:30:51] iter = 0240, loss = 0.9034
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:31:00] iter = 0250, loss = 0.8936
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:31:08] iter = 0260, loss = 0.9313
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:31:16] iter = 0270, loss = 0.7886
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:31:24] iter = 0280, loss = 0.9106
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:31:32] iter = 0290, loss = 0.6381
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 300
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 147.18it/s]
+[2025-03-12 19:31:47] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000822 train acc = 1.0000, test acc = 0.5954
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 146.89it/s]
+[2025-03-12 19:31:53] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000545 train acc = 1.0000, test acc = 0.6017
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.36it/s]
+[2025-03-12 19:32:01] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000422 train acc = 1.0000, test acc = 0.6023
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.28it/s]
+[2025-03-12 19:32:08] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.001090 train acc = 1.0000, test acc = 0.6103
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.28it/s]
+[2025-03-12 19:32:15] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.001032 train acc = 1.0000, test acc = 0.6018
+Evaluate 5 random ConvNet, mean = 0.6023 std = 0.0047
+-------------------------
+[2025-03-12 19:32:16] iter = 0300, loss = 0.9420
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:32:25] iter = 0310, loss = 0.9070
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:32:33] iter = 0320, loss = 0.9162
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:32:41] iter = 0330, loss = 0.9174
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:32:49] iter = 0340, loss = 0.5863
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:32:58] iter = 0350, loss = 0.7234
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:33:06] iter = 0360, loss = 0.9291
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:33:14] iter = 0370, loss = 0.5915
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:33:23] iter = 0380, loss = 0.6166
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:33:31] iter = 0390, loss = 0.8810
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 400
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.74it/s]
+[2025-03-12 19:33:45] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000968 train acc = 1.0000, test acc = 0.5957
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.13it/s]
+[2025-03-12 19:33:52] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000275 train acc = 1.0000, test acc = 0.5905
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.10it/s]
+[2025-03-12 19:33:59] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000555 train acc = 1.0000, test acc = 0.6016
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.33it/s]
+[2025-03-12 19:34:06] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.006086 train acc = 1.0000, test acc = 0.5814
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.31it/s]
+[2025-03-12 19:34:13] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.000914 train acc = 1.0000, test acc = 0.5867
+Evaluate 5 random ConvNet, mean = 0.5912 std = 0.0070
+-------------------------
+[2025-03-12 19:34:14] iter = 0400, loss = 0.7579
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:34:22] iter = 0410, loss = 0.7568
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:34:30] iter = 0420, loss = 0.9355
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:34:39] iter = 0430, loss = 0.6139
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:34:47] iter = 0440, loss = 0.9257
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:34:56] iter = 0450, loss = 0.5756
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:35:04] iter = 0460, loss = 0.6105
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:35:13] iter = 0470, loss = 0.6311
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:35:21] iter = 0480, loss = 0.9499
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:35:30] iter = 0490, loss = 0.9106
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 500
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.55it/s]
+[2025-03-12 19:35:45] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.004187 train acc = 1.0000, test acc = 0.6209
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.95it/s]
+[2025-03-12 19:35:52] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000852 train acc = 1.0000, test acc = 0.6118
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.09it/s]
+[2025-03-12 19:35:59] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.003292 train acc = 1.0000, test acc = 0.6196
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.43it/s]
+[2025-03-12 19:36:06] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.001500 train acc = 1.0000, test acc = 0.6223
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.27it/s]
+[2025-03-12 19:36:13] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000497 train acc = 1.0000, test acc = 0.6173
+Evaluate 5 random ConvNet, mean = 0.6184 std = 0.0037
+-------------------------
+[2025-03-12 19:36:14] iter = 0500, loss = 0.5149
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:36:23] iter = 0510, loss = 0.7658
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:36:31] iter = 0520, loss = 0.8815
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:36:40] iter = 0530, loss = 0.5034
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:36:48] iter = 0540, loss = 0.9180
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:36:56] iter = 0550, loss = 1.0073
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:37:05] iter = 0560, loss = 0.9383
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:37:13] iter = 0570, loss = 0.9006
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:37:21] iter = 0580, loss = 0.9285
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:37:29] iter = 0590, loss = 0.9363
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 600
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.08it/s]
+[2025-03-12 19:37:44] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000796 train acc = 1.0000, test acc = 0.6120
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.89it/s]
+[2025-03-12 19:37:51] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.001031 train acc = 1.0000, test acc = 0.6141
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.20it/s]
+[2025-03-12 19:37:58] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000299 train acc = 1.0000, test acc = 0.6014
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.88it/s]
+[2025-03-12 19:38:05] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000374 train acc = 1.0000, test acc = 0.6052
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.12it/s]
+[2025-03-12 19:38:12] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000479 train acc = 1.0000, test acc = 0.6182
+Evaluate 5 random ConvNet, mean = 0.6102 std = 0.0061
+-------------------------
+[2025-03-12 19:38:13] iter = 0600, loss = 0.7550
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:38:22] iter = 0610, loss = 0.9105
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:38:30] iter = 0620, loss = 0.9029
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:38:38] iter = 0630, loss = 0.8979
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:38:47] iter = 0640, loss = 0.6924
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:38:55] iter = 0650, loss = 0.9233
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:39:03] iter = 0660, loss = 0.9304
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:39:12] iter = 0670, loss = 0.5381
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:39:20] iter = 0680, loss = 0.9300
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:39:29] iter = 0690, loss = 0.9223
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 700
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.53it/s]
+[2025-03-12 19:39:43] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000536 train acc = 1.0000, test acc = 0.6322
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.75it/s]
+[2025-03-12 19:39:50] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000143 train acc = 1.0000, test acc = 0.6148
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.72it/s]
+[2025-03-12 19:39:57] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.001001 train acc = 1.0000, test acc = 0.6223
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.38it/s]
+[2025-03-12 19:40:04] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.003157 train acc = 1.0000, test acc = 0.6258
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.67it/s]
+[2025-03-12 19:40:11] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000477 train acc = 1.0000, test acc = 0.6184
+Evaluate 5 random ConvNet, mean = 0.6227 std = 0.0060
+-------------------------
+[2025-03-12 19:40:12] iter = 0700, loss = 0.6982
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:40:21] iter = 0710, loss = 0.4884
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:40:29] iter = 0720, loss = 0.6859
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:40:37] iter = 0730, loss = 0.7751
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:40:45] iter = 0740, loss = 0.9078
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:40:53] iter = 0750, loss = 0.8988
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:41:01] iter = 0760, loss = 0.8150
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:41:10] iter = 0770, loss = 0.6783
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:41:18] iter = 0780, loss = 0.6626
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:41:26] iter = 0790, loss = 0.5898
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 800
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.88it/s]
+[2025-03-12 19:41:41] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000317 train acc = 1.0000, test acc = 0.6305
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.34it/s]
+[2025-03-12 19:41:48] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000223 train acc = 1.0000, test acc = 0.6150
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.23it/s]
+[2025-03-12 19:41:55] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000392 train acc = 1.0000, test acc = 0.6185
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.61it/s]
+[2025-03-12 19:42:02] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.004013 train acc = 1.0000, test acc = 0.6210
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.43it/s]
+[2025-03-12 19:42:09] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.003274 train acc = 1.0000, test acc = 0.6247
+Evaluate 5 random ConvNet, mean = 0.6219 std = 0.0053
+-------------------------
+[2025-03-12 19:42:10] iter = 0800, loss = 0.9169
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:42:19] iter = 0810, loss = 0.5614
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:42:27] iter = 0820, loss = 0.7982
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:42:36] iter = 0830, loss = 0.8644
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:42:44] iter = 0840, loss = 0.7833
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:42:53] iter = 0850, loss = 0.5656
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:43:01] iter = 0860, loss = 0.9392
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:43:10] iter = 0870, loss = 0.5585
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:43:18] iter = 0880, loss = 0.6390
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:43:27] iter = 0890, loss = 0.8781
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 900
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.17it/s]
+[2025-03-12 19:43:42] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.001057 train acc = 1.0000, test acc = 0.6414
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.30it/s]
+[2025-03-12 19:43:49] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000290 train acc = 1.0000, test acc = 0.6264
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.73it/s]
+[2025-03-12 19:43:56] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000270 train acc = 1.0000, test acc = 0.6295
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.10it/s]
+[2025-03-12 19:44:03] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000198 train acc = 1.0000, test acc = 0.6273
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.35it/s]
+[2025-03-12 19:44:10] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000881 train acc = 1.0000, test acc = 0.6213
+Evaluate 5 random ConvNet, mean = 0.6292 std = 0.0067
+-------------------------
+[2025-03-12 19:44:12] iter = 0900, loss = 0.8862
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:44:20] iter = 0910, loss = 0.7128
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:44:29] iter = 0920, loss = 0.5738
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:44:38] iter = 0930, loss = 0.7014
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:44:46] iter = 0940, loss = 0.7277
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:44:55] iter = 0950, loss = 0.8201
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:45:03] iter = 0960, loss = 0.8435
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:45:12] iter = 0970, loss = 0.9055
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:45:20] iter = 0980, loss = 0.8963
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:45:28] iter = 0990, loss = 0.5849
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 1000
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 134.65it/s]
+[2025-03-12 19:45:44] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000287 train acc = 1.0000, test acc = 0.6317
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 133.66it/s]
+[2025-03-12 19:45:51] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000668 train acc = 1.0000, test acc = 0.6259
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 134.94it/s]
+[2025-03-12 19:45:59] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000599 train acc = 1.0000, test acc = 0.6414
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.09it/s]
+[2025-03-12 19:46:06] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000346 train acc = 1.0000, test acc = 0.6372
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.04it/s]
+[2025-03-12 19:46:13] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000180 train acc = 1.0000, test acc = 0.6282
+Evaluate 5 random ConvNet, mean = 0.6329 std = 0.0057
+-------------------------
+[2025-03-12 19:46:14] iter = 1000, loss = 0.9236
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:46:23] iter = 1010, loss = 0.9365
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:46:31] iter = 1020, loss = 0.7874
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:46:40] iter = 1030, loss = 0.8766
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:46:48] iter = 1040, loss = 0.6308
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:46:57] iter = 1050, loss = 0.5816
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:47:05] iter = 1060, loss = 0.7687
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:47:14] iter = 1070, loss = 0.5796
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:47:22] iter = 1080, loss = 0.5825
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:47:30] iter = 1090, loss = 0.8259
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 1100
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.98it/s]
+[2025-03-12 19:47:45] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000416 train acc = 1.0000, test acc = 0.6313
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.90it/s]
+[2025-03-12 19:47:52] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.001025 train acc = 1.0000, test acc = 0.6334
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.24it/s]
+[2025-03-12 19:47:59] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000131 train acc = 1.0000, test acc = 0.6386
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.44it/s]
+[2025-03-12 19:48:06] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000194 train acc = 1.0000, test acc = 0.6396
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.15it/s]
+[2025-03-12 19:48:13] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.002355 train acc = 1.0000, test acc = 0.6511
+Evaluate 5 random ConvNet, mean = 0.6388 std = 0.0069
+-------------------------
+[2025-03-12 19:48:14] iter = 1100, loss = 0.8986
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:48:23] iter = 1110, loss = 0.6312
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:48:31] iter = 1120, loss = 0.7990
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:48:39] iter = 1130, loss = 0.5438
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:48:48] iter = 1140, loss = 0.8971
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:48:56] iter = 1150, loss = 0.9242
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:49:05] iter = 1160, loss = 0.7728
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:49:13] iter = 1170, loss = 0.6297
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:49:21] iter = 1180, loss = 0.7085
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:49:30] iter = 1190, loss = 0.6213
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 1200
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.17it/s]
+[2025-03-12 19:49:44] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.001157 train acc = 1.0000, test acc = 0.6311
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.33it/s]
+[2025-03-12 19:49:51] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000451 train acc = 1.0000, test acc = 0.6362
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.65it/s]
+[2025-03-12 19:49:59] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000442 train acc = 1.0000, test acc = 0.6405
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.81it/s]
+[2025-03-12 19:50:06] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000172 train acc = 1.0000, test acc = 0.6376
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.91it/s]
+[2025-03-12 19:50:13] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000344 train acc = 1.0000, test acc = 0.6331
+Evaluate 5 random ConvNet, mean = 0.6357 std = 0.0033
+-------------------------
+[2025-03-12 19:50:13] iter = 1200, loss = 0.5149
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:50:22] iter = 1210, loss = 0.9141
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:50:30] iter = 1220, loss = 0.8923
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:50:38] iter = 1230, loss = 0.8319
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:50:47] iter = 1240, loss = 0.9107
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:50:55] iter = 1250, loss = 0.9151
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:51:03] iter = 1260, loss = 0.5345
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:51:12] iter = 1270, loss = 0.8694
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:51:20] iter = 1280, loss = 0.7647
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:51:29] iter = 1290, loss = 0.6158
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 1300
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.33it/s]
+[2025-03-12 19:51:44] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000237 train acc = 1.0000, test acc = 0.6299
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.43it/s]
+[2025-03-12 19:51:51] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000215 train acc = 1.0000, test acc = 0.6420
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.07it/s]
+[2025-03-12 19:51:58] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000162 train acc = 1.0000, test acc = 0.6354
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.14it/s]
+[2025-03-12 19:52:05] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000316 train acc = 1.0000, test acc = 0.6232
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.56it/s]
+[2025-03-12 19:52:12] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000206 train acc = 1.0000, test acc = 0.6294
+Evaluate 5 random ConvNet, mean = 0.6320 std = 0.0063
+-------------------------
+[2025-03-12 19:52:13] iter = 1300, loss = 0.8697
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:52:22] iter = 1310, loss = 0.8597
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:52:30] iter = 1320, loss = 0.9052
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:52:38] iter = 1330, loss = 0.5012
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:52:47] iter = 1340, loss = 0.8052
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:52:55] iter = 1350, loss = 0.9446
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:53:04] iter = 1360, loss = 0.8829
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:53:12] iter = 1370, loss = 0.5515
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:53:21] iter = 1380, loss = 0.7789
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:53:29] iter = 1390, loss = 0.8029
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 1400
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 137.63it/s]
+[2025-03-12 19:53:44] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.003031 train acc = 1.0000, test acc = 0.6413
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.22it/s]
+[2025-03-12 19:53:51] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.001193 train acc = 1.0000, test acc = 0.6275
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.91it/s]
+[2025-03-12 19:53:58] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000704 train acc = 1.0000, test acc = 0.6343
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 146.33it/s]
+[2025-03-12 19:54:05] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.002886 train acc = 1.0000, test acc = 0.6426
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.29it/s]
+[2025-03-12 19:54:12] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000334 train acc = 1.0000, test acc = 0.6399
+Evaluate 5 random ConvNet, mean = 0.6371 std = 0.0056
+-------------------------
+[2025-03-12 19:54:13] iter = 1400, loss = 0.5043
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:54:22] iter = 1410, loss = 0.5010
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:54:30] iter = 1420, loss = 0.4975
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:54:38] iter = 1430, loss = 0.8432
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:54:46] iter = 1440, loss = 0.6626
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:54:54] iter = 1450, loss = 0.8712
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:55:03] iter = 1460, loss = 0.5838
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:55:11] iter = 1470, loss = 0.5719
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:55:19] iter = 1480, loss = 0.9075
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:55:27] iter = 1490, loss = 0.6762
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 1500
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.25it/s]
+[2025-03-12 19:55:41] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000794 train acc = 1.0000, test acc = 0.6440
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 137.88it/s]
+[2025-03-12 19:55:49] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.001086 train acc = 1.0000, test acc = 0.6461
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.89it/s]
+[2025-03-12 19:55:56] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000434 train acc = 1.0000, test acc = 0.6413
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.49it/s]
+[2025-03-12 19:56:03] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000419 train acc = 1.0000, test acc = 0.6381
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 147.90it/s]
+[2025-03-12 19:56:09] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.000154 train acc = 1.0000, test acc = 0.6363
+Evaluate 5 random ConvNet, mean = 0.6412 std = 0.0036
+-------------------------
+[2025-03-12 19:56:11] iter = 1500, loss = 0.8024
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:56:19] iter = 1510, loss = 0.7302
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:56:27] iter = 1520, loss = 0.7574
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:56:35] iter = 1530, loss = 0.6343
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:56:44] iter = 1540, loss = 0.9248
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:56:52] iter = 1550, loss = 0.6322
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 19:57:00] iter = 1560, loss = 0.5726
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:57:08] iter = 1570, loss = 0.5617
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:57:16] iter = 1580, loss = 0.5828
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:57:24] iter = 1590, loss = 0.6379
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 1600
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 146.79it/s]
+[2025-03-12 19:57:38] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.003948 train acc = 1.0000, test acc = 0.6395
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.85it/s]
+[2025-03-12 19:57:46] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000442 train acc = 1.0000, test acc = 0.6433
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 147.14it/s]
+[2025-03-12 19:57:52] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000449 train acc = 1.0000, test acc = 0.6432
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.74it/s]
+[2025-03-12 19:57:59] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.003015 train acc = 1.0000, test acc = 0.6377
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 146.59it/s]
+[2025-03-12 19:58:06] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.000382 train acc = 1.0000, test acc = 0.6373
+Evaluate 5 random ConvNet, mean = 0.6402 std = 0.0026
+-------------------------
+[2025-03-12 19:58:07] iter = 1600, loss = 0.4844
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 19:58:15] iter = 1610, loss = 0.4931
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 19:58:24] iter = 1620, loss = 0.4967
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 19:58:32] iter = 1630, loss = 0.7387
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 19:58:40] iter = 1640, loss = 0.8960
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 19:58:48] iter = 1650, loss = 0.6610
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 19:58:56] iter = 1660, loss = 0.8374
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 19:59:04] iter = 1670, loss = 0.7468
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 19:59:13] iter = 1680, loss = 0.5213
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 19:59:21] iter = 1690, loss = 0.5036
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 1700
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.46it/s]
+[2025-03-12 19:59:36] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000397 train acc = 1.0000, test acc = 0.6399
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.21it/s]
+[2025-03-12 19:59:43] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000227 train acc = 1.0000, test acc = 0.6469
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.44it/s]
+[2025-03-12 19:59:50] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000954 train acc = 1.0000, test acc = 0.6375
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 136.58it/s]
+[2025-03-12 19:59:57] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000220 train acc = 1.0000, test acc = 0.6503
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 132.56it/s]
+[2025-03-12 20:00:05] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.005242 train acc = 1.0000, test acc = 0.6512
+Evaluate 5 random ConvNet, mean = 0.6452 std = 0.0055
+-------------------------
+[2025-03-12 20:00:06] iter = 1700, loss = 0.6508
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:00:15] iter = 1710, loss = 0.8760
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:00:23] iter = 1720, loss = 0.9266
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:00:31] iter = 1730, loss = 0.6821
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:00:39] iter = 1740, loss = 0.8232
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:00:48] iter = 1750, loss = 0.7441
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:00:56] iter = 1760, loss = 0.7245
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:01:04] iter = 1770, loss = 0.6377
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:01:12] iter = 1780, loss = 0.5555
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:01:21] iter = 1790, loss = 0.7636
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 1800
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 133.25it/s]
+[2025-03-12 20:01:35] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000534 train acc = 1.0000, test acc = 0.6445
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 137.90it/s]
+[2025-03-12 20:01:43] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000188 train acc = 1.0000, test acc = 0.6439
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.39it/s]
+[2025-03-12 20:01:50] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.001378 train acc = 1.0000, test acc = 0.6411
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 135.04it/s]
+[2025-03-12 20:01:57] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000480 train acc = 1.0000, test acc = 0.6418
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.01it/s]
+[2025-03-12 20:02:04] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000177 train acc = 1.0000, test acc = 0.6479
+Evaluate 5 random ConvNet, mean = 0.6438 std = 0.0024
+-------------------------
+[2025-03-12 20:02:05] iter = 1800, loss = 0.6764
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:02:14] iter = 1810, loss = 0.6294
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:02:22] iter = 1820, loss = 0.6530
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:02:30] iter = 1830, loss = 0.8199
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:02:38] iter = 1840, loss = 0.5529
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:02:47] iter = 1850, loss = 0.7697
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:02:55] iter = 1860, loss = 0.6269
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:03:03] iter = 1870, loss = 0.5968
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:03:12] iter = 1880, loss = 0.9095
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:03:20] iter = 1890, loss = 0.9245
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 1900
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.89it/s]
+[2025-03-12 20:03:34] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000483 train acc = 1.0000, test acc = 0.6390
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 136.16it/s]
+[2025-03-12 20:03:42] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000195 train acc = 1.0000, test acc = 0.6461
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 134.03it/s]
+[2025-03-12 20:03:49] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000255 train acc = 1.0000, test acc = 0.6521
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.42it/s]
+[2025-03-12 20:03:57] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000077 train acc = 1.0000, test acc = 0.6454
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.99it/s]
+[2025-03-12 20:04:04] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000457 train acc = 1.0000, test acc = 0.6511
+Evaluate 5 random ConvNet, mean = 0.6467 std = 0.0047
+-------------------------
+[2025-03-12 20:04:05] iter = 1900, loss = 0.7167
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:04:13] iter = 1910, loss = 0.8805
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:04:22] iter = 1920, loss = 0.8614
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:04:30] iter = 1930, loss = 0.4682
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:04:38] iter = 1940, loss = 0.8989
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:04:46] iter = 1950, loss = 0.6047
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:04:55] iter = 1960, loss = 0.5828
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:05:03] iter = 1970, loss = 0.4752
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:05:11] iter = 1980, loss = 0.8416
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:05:19] iter = 1990, loss = 0.5595
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 2000
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.07it/s]
+[2025-03-12 20:05:34] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.001252 train acc = 1.0000, test acc = 0.6390
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.40it/s]
+[2025-03-12 20:05:41] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000225 train acc = 1.0000, test acc = 0.6459
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 134.76it/s]
+[2025-03-12 20:05:49] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000251 train acc = 1.0000, test acc = 0.6392
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 134.89it/s]
+[2025-03-12 20:05:56] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000245 train acc = 1.0000, test acc = 0.6427
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.21it/s]
+[2025-03-12 20:06:03] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.002759 train acc = 1.0000, test acc = 0.6361
+Evaluate 5 random ConvNet, mean = 0.6406 std = 0.0034
+-------------------------
+[2025-03-12 20:06:05] iter = 2000, loss = 0.6045
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:06:13] iter = 2010, loss = 0.5170
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:06:21] iter = 2020, loss = 0.9001
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:06:29] iter = 2030, loss = 0.5778
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:06:38] iter = 2040, loss = 0.6462
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:06:46] iter = 2050, loss = 0.7986
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:06:54] iter = 2060, loss = 0.8445
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:07:03] iter = 2070, loss = 0.9247
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:07:11] iter = 2080, loss = 0.6741
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:07:19] iter = 2090, loss = 0.6276
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 2100
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.32it/s]
+[2025-03-12 20:07:34] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000321 train acc = 1.0000, test acc = 0.6346
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.36it/s]
+[2025-03-12 20:07:41] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000200 train acc = 1.0000, test acc = 0.6462
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.77it/s]
+[2025-03-12 20:07:48] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.002420 train acc = 1.0000, test acc = 0.6306
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 134.17it/s]
+[2025-03-12 20:07:55] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000247 train acc = 1.0000, test acc = 0.6455
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 134.70it/s]
+[2025-03-12 20:08:03] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000925 train acc = 1.0000, test acc = 0.6490
+Evaluate 5 random ConvNet, mean = 0.6412 std = 0.0072
+-------------------------
+[2025-03-12 20:08:04] iter = 2100, loss = 0.7444
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:08:12] iter = 2110, loss = 0.9052
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:08:21] iter = 2120, loss = 0.5450
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:08:29] iter = 2130, loss = 0.9018
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:08:37] iter = 2140, loss = 0.5728
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:08:45] iter = 2150, loss = 0.7617
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:08:54] iter = 2160, loss = 0.8544
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:09:02] iter = 2170, loss = 0.9105
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:09:10] iter = 2180, loss = 0.5228
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:09:19] iter = 2190, loss = 0.6206
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 2200
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.87it/s]
+[2025-03-12 20:09:33] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000256 train acc = 1.0000, test acc = 0.6494
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.16it/s]
+[2025-03-12 20:09:40] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000325 train acc = 1.0000, test acc = 0.6534
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.70it/s]
+[2025-03-12 20:09:47] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000168 train acc = 1.0000, test acc = 0.6456
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 137.22it/s]
+[2025-03-12 20:09:55] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000795 train acc = 1.0000, test acc = 0.6501
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.24it/s]
+[2025-03-12 20:10:02] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000311 train acc = 1.0000, test acc = 0.6400
+Evaluate 5 random ConvNet, mean = 0.6477 std = 0.0046
+-------------------------
+[2025-03-12 20:10:03] iter = 2200, loss = 0.8570
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:10:12] iter = 2210, loss = 0.8569
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:10:20] iter = 2220, loss = 0.5712
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:10:28] iter = 2230, loss = 0.8930
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:10:36] iter = 2240, loss = 0.8239
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:10:45] iter = 2250, loss = 0.8325
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:10:53] iter = 2260, loss = 0.6047
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:11:01] iter = 2270, loss = 0.6220
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:11:10] iter = 2280, loss = 0.5907
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:11:18] iter = 2290, loss = 0.9221
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 2300
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 146.95it/s]
+[2025-03-12 20:11:32] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000246 train acc = 1.0000, test acc = 0.6272
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.77it/s]
+[2025-03-12 20:11:39] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000236 train acc = 1.0000, test acc = 0.6212
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.22it/s]
+[2025-03-12 20:11:46] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000447 train acc = 1.0000, test acc = 0.6356
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.30it/s]
+[2025-03-12 20:11:53] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000854 train acc = 1.0000, test acc = 0.6360
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 133.80it/s]
+[2025-03-12 20:12:01] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.002466 train acc = 1.0000, test acc = 0.6419
+Evaluate 5 random ConvNet, mean = 0.6324 std = 0.0073
+-------------------------
+[2025-03-12 20:12:02] iter = 2300, loss = 0.8301
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:12:10] iter = 2310, loss = 0.6274
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:12:19] iter = 2320, loss = 0.8659
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:12:27] iter = 2330, loss = 0.8640
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:12:35] iter = 2340, loss = 0.7836
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:12:44] iter = 2350, loss = 0.8608
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:12:52] iter = 2360, loss = 0.6421
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:13:00] iter = 2370, loss = 0.5974
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:13:08] iter = 2380, loss = 0.8806
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:13:17] iter = 2390, loss = 0.8765
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 2400
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.02it/s]
+[2025-03-12 20:13:31] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000224 train acc = 1.0000, test acc = 0.6398
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.34it/s]
+[2025-03-12 20:13:38] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000251 train acc = 1.0000, test acc = 0.6477
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.29it/s]
+[2025-03-12 20:13:45] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000479 train acc = 1.0000, test acc = 0.6453
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 134.86it/s]
+[2025-03-12 20:13:52] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000144 train acc = 1.0000, test acc = 0.6433
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 134.56it/s]
+[2025-03-12 20:14:00] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000074 train acc = 1.0000, test acc = 0.6329
+Evaluate 5 random ConvNet, mean = 0.6418 std = 0.0051
+-------------------------
+[2025-03-12 20:14:01] iter = 2400, loss = 0.5920
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:14:09] iter = 2410, loss = 0.6546
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:14:18] iter = 2420, loss = 0.5391
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:14:27] iter = 2430, loss = 0.9047
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:14:35] iter = 2440, loss = 0.5236
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:14:43] iter = 2450, loss = 0.5846
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:14:51] iter = 2460, loss = 0.8683
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:15:00] iter = 2470, loss = 0.6376
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:15:08] iter = 2480, loss = 0.9101
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:15:17] iter = 2490, loss = 0.9040
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 2500
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.56it/s]
+[2025-03-12 20:15:31] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.003185 train acc = 1.0000, test acc = 0.6462
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.41it/s]
+[2025-03-12 20:15:38] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000187 train acc = 1.0000, test acc = 0.6517
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.19it/s]
+[2025-03-12 20:15:45] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.002865 train acc = 1.0000, test acc = 0.6494
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 135.20it/s]
+[2025-03-12 20:15:53] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000508 train acc = 1.0000, test acc = 0.6403
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 133.44it/s]
+[2025-03-12 20:16:00] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000386 train acc = 1.0000, test acc = 0.6464
+Evaluate 5 random ConvNet, mean = 0.6468 std = 0.0038
+-------------------------
+[2025-03-12 20:16:01] iter = 2500, loss = 0.5412
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:16:09] iter = 2510, loss = 0.6756
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:16:18] iter = 2520, loss = 0.8925
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:16:26] iter = 2530, loss = 0.5206
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:16:34] iter = 2540, loss = 0.6871
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:16:43] iter = 2550, loss = 0.6720
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:16:51] iter = 2560, loss = 0.5267
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:16:59] iter = 2570, loss = 0.6238
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:17:07] iter = 2580, loss = 0.5643
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:17:16] iter = 2590, loss = 0.5403
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 2600
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.16it/s]
+[2025-03-12 20:17:30] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000726 train acc = 1.0000, test acc = 0.6518
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.79it/s]
+[2025-03-12 20:17:37] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000398 train acc = 1.0000, test acc = 0.6442
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.02it/s]
+[2025-03-12 20:17:44] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000359 train acc = 1.0000, test acc = 0.6508
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.40it/s]
+[2025-03-12 20:17:51] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.000695 train acc = 1.0000, test acc = 0.6434
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 137.49it/s]
+[2025-03-12 20:17:58] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000310 train acc = 1.0000, test acc = 0.6484
+Evaluate 5 random ConvNet, mean = 0.6477 std = 0.0034
+-------------------------
+[2025-03-12 20:18:00] iter = 2600, loss = 0.4735
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:18:08] iter = 2610, loss = 0.5509
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:18:17] iter = 2620, loss = 0.5149
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:18:25] iter = 2630, loss = 0.8947
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:18:33] iter = 2640, loss = 0.6510
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:18:41] iter = 2650, loss = 0.8737
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:18:50] iter = 2660, loss = 0.5662
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:18:58] iter = 2670, loss = 0.7552
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:19:06] iter = 2680, loss = 0.5494
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:19:14] iter = 2690, loss = 0.8013
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 2700
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.67it/s]
+[2025-03-12 20:19:29] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000468 train acc = 1.0000, test acc = 0.6471
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.36it/s]
+[2025-03-12 20:19:36] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.004102 train acc = 1.0000, test acc = 0.6395
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.07it/s]
+[2025-03-12 20:19:43] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000214 train acc = 1.0000, test acc = 0.6355
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.88it/s]
+[2025-03-12 20:19:50] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000979 train acc = 1.0000, test acc = 0.6375
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.89it/s]
+[2025-03-12 20:19:57] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.002080 train acc = 1.0000, test acc = 0.6379
+Evaluate 5 random ConvNet, mean = 0.6395 std = 0.0040
+-------------------------
+[2025-03-12 20:19:58] iter = 2700, loss = 0.6037
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:20:06] iter = 2710, loss = 0.5446
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:20:15] iter = 2720, loss = 0.8562
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:20:23] iter = 2730, loss = 0.8993
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:20:32] iter = 2740, loss = 0.8190
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:20:40] iter = 2750, loss = 0.8210
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:20:49] iter = 2760, loss = 0.6986
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:20:57] iter = 2770, loss = 0.7783
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:21:05] iter = 2780, loss = 0.8653
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:21:13] iter = 2790, loss = 0.8758
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 2800
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 134.84it/s]
+[2025-03-12 20:21:29] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000541 train acc = 1.0000, test acc = 0.6361
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.87it/s]
+[2025-03-12 20:21:36] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000325 train acc = 1.0000, test acc = 0.6327
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.19it/s]
+[2025-03-12 20:21:43] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000693 train acc = 1.0000, test acc = 0.6460
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.47it/s]
+[2025-03-12 20:21:50] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000331 train acc = 1.0000, test acc = 0.6511
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.92it/s]
+[2025-03-12 20:21:57] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.000260 train acc = 1.0000, test acc = 0.6527
+Evaluate 5 random ConvNet, mean = 0.6437 std = 0.0080
+-------------------------
+[2025-03-12 20:21:58] iter = 2800, loss = 0.9012
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:22:06] iter = 2810, loss = 0.6470
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:22:15] iter = 2820, loss = 0.6023
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:22:23] iter = 2830, loss = 0.8595
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:22:31] iter = 2840, loss = 0.5740
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:22:40] iter = 2850, loss = 0.5128
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:22:48] iter = 2860, loss = 0.8134
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:22:56] iter = 2870, loss = 0.5541
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:23:04] iter = 2880, loss = 0.9194
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:23:13] iter = 2890, loss = 0.8750
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 2900
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.20it/s]
+[2025-03-12 20:23:28] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.002824 train acc = 1.0000, test acc = 0.6479
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.55it/s]
+[2025-03-12 20:23:35] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000132 train acc = 1.0000, test acc = 0.6499
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.41it/s]
+[2025-03-12 20:23:42] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000214 train acc = 1.0000, test acc = 0.6426
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.05it/s]
+[2025-03-12 20:23:49] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000160 train acc = 1.0000, test acc = 0.6468
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.14it/s]
+[2025-03-12 20:23:56] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000724 train acc = 1.0000, test acc = 0.6513
+Evaluate 5 random ConvNet, mean = 0.6477 std = 0.0030
+-------------------------
+[2025-03-12 20:23:57] iter = 2900, loss = 0.7404
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:24:05] iter = 2910, loss = 0.5902
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:24:13] iter = 2920, loss = 0.8986
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:24:22] iter = 2930, loss = 0.7465
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:24:30] iter = 2940, loss = 0.5212
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:24:38] iter = 2950, loss = 0.4790
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:24:47] iter = 2960, loss = 0.8025
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:24:55] iter = 2970, loss = 0.8348
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:25:04] iter = 2980, loss = 0.4806
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:25:12] iter = 2990, loss = 0.8034
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 3000
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.56it/s]
+[2025-03-12 20:25:27] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.002270 train acc = 1.0000, test acc = 0.6508
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.65it/s]
+[2025-03-12 20:25:34] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000510 train acc = 1.0000, test acc = 0.6418
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.34it/s]
+[2025-03-12 20:25:41] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000342 train acc = 1.0000, test acc = 0.6440
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.07it/s]
+[2025-03-12 20:25:48] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.000536 train acc = 1.0000, test acc = 0.6453
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.71it/s]
+[2025-03-12 20:25:55] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.001110 train acc = 1.0000, test acc = 0.6474
+Evaluate 5 random ConvNet, mean = 0.6459 std = 0.0031
+-------------------------
+[2025-03-12 20:25:56] iter = 3000, loss = 0.4881
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:26:05] iter = 3010, loss = 0.7107
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:26:13] iter = 3020, loss = 0.8647
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:26:21] iter = 3030, loss = 0.4965
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:26:29] iter = 3040, loss = 0.6088
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:26:38] iter = 3050, loss = 0.4805
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:26:46] iter = 3060, loss = 0.7445
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:26:54] iter = 3070, loss = 0.5678
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:27:02] iter = 3080, loss = 0.8548
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:27:11] iter = 3090, loss = 0.6324
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 3100
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 147.56it/s]
+[2025-03-12 20:27:25] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000417 train acc = 1.0000, test acc = 0.6399
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 147.88it/s]
+[2025-03-12 20:27:32] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000307 train acc = 1.0000, test acc = 0.6407
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.48it/s]
+[2025-03-12 20:27:39] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.003173 train acc = 1.0000, test acc = 0.6445
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.22it/s]
+[2025-03-12 20:27:46] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000303 train acc = 1.0000, test acc = 0.6429
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.93it/s]
+[2025-03-12 20:27:53] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000440 train acc = 1.0000, test acc = 0.6457
+Evaluate 5 random ConvNet, mean = 0.6427 std = 0.0022
+-------------------------
+[2025-03-12 20:27:54] iter = 3100, loss = 0.8579
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:28:02] iter = 3110, loss = 0.7419
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:28:10] iter = 3120, loss = 0.6157
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:28:18] iter = 3130, loss = 0.9082
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:28:26] iter = 3140, loss = 0.9047
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:28:35] iter = 3150, loss = 0.8203
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:28:43] iter = 3160, loss = 0.5150
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:28:51] iter = 3170, loss = 0.8086
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:28:59] iter = 3180, loss = 0.5905
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:29:07] iter = 3190, loss = 0.4567
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 3200
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.87it/s]
+[2025-03-12 20:29:22] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000203 train acc = 1.0000, test acc = 0.6473
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.96it/s]
+[2025-03-12 20:29:29] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000359 train acc = 1.0000, test acc = 0.6464
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 146.70it/s]
+[2025-03-12 20:29:35] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000399 train acc = 1.0000, test acc = 0.6562
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.84it/s]
+[2025-03-12 20:29:42] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.000691 train acc = 1.0000, test acc = 0.6589
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.99it/s]
+[2025-03-12 20:29:49] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.003284 train acc = 1.0000, test acc = 0.6477
+Evaluate 5 random ConvNet, mean = 0.6513 std = 0.0052
+-------------------------
+[2025-03-12 20:29:51] iter = 3200, loss = 0.8552
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:29:59] iter = 3210, loss = 0.5595
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:30:07] iter = 3220, loss = 0.6013
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:30:16] iter = 3230, loss = 0.8565
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:30:24] iter = 3240, loss = 0.8785
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:30:32] iter = 3250, loss = 0.7405
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:30:40] iter = 3260, loss = 0.8047
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:30:48] iter = 3270, loss = 0.7759
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:30:56] iter = 3280, loss = 0.7550
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:31:05] iter = 3290, loss = 0.9225
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 3300
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.41it/s]
+[2025-03-12 20:31:19] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000283 train acc = 1.0000, test acc = 0.6432
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.86it/s]
+[2025-03-12 20:31:26] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.003647 train acc = 1.0000, test acc = 0.6523
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.70it/s]
+[2025-03-12 20:31:33] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000535 train acc = 1.0000, test acc = 0.6497
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.15it/s]
+[2025-03-12 20:31:41] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000280 train acc = 1.0000, test acc = 0.6424
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.17it/s]
+[2025-03-12 20:31:48] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.002081 train acc = 1.0000, test acc = 0.6528
+Evaluate 5 random ConvNet, mean = 0.6481 std = 0.0044
+-------------------------
+[2025-03-12 20:31:48] iter = 3300, loss = 0.6017
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:31:57] iter = 3310, loss = 0.7578
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:32:05] iter = 3320, loss = 0.5368
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:32:13] iter = 3330, loss = 0.7245
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:32:22] iter = 3340, loss = 0.6153
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:32:30] iter = 3350, loss = 0.4948
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:32:38] iter = 3360, loss = 0.7177
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:32:46] iter = 3370, loss = 0.8544
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:32:55] iter = 3380, loss = 0.9154
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:33:03] iter = 3390, loss = 0.5093
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 3400
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 137.50it/s]
+[2025-03-12 20:33:18] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000441 train acc = 1.0000, test acc = 0.6432
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.58it/s]
+[2025-03-12 20:33:25] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000613 train acc = 1.0000, test acc = 0.6340
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.08it/s]
+[2025-03-12 20:33:32] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.002808 train acc = 1.0000, test acc = 0.6438
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.28it/s]
+[2025-03-12 20:33:39] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.000188 train acc = 1.0000, test acc = 0.6338
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.53it/s]
+[2025-03-12 20:33:46] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000355 train acc = 1.0000, test acc = 0.6395
+Evaluate 5 random ConvNet, mean = 0.6389 std = 0.0043
+-------------------------
+[2025-03-12 20:33:47] iter = 3400, loss = 0.5453
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:33:55] iter = 3410, loss = 0.5210
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:34:04] iter = 3420, loss = 0.6267
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:34:12] iter = 3430, loss = 0.7512
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:34:20] iter = 3440, loss = 0.5621
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:34:29] iter = 3450, loss = 0.6626
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:34:37] iter = 3460, loss = 0.6493
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:34:45] iter = 3470, loss = 0.7691
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:34:54] iter = 3480, loss = 0.5275
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:35:02] iter = 3490, loss = 0.7261
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 3500
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.99it/s]
+[2025-03-12 20:35:17] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000536 train acc = 1.0000, test acc = 0.6499
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.73it/s]
+[2025-03-12 20:35:24] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000239 train acc = 1.0000, test acc = 0.6452
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.53it/s]
+[2025-03-12 20:35:31] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.002932 train acc = 1.0000, test acc = 0.6577
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.29it/s]
+[2025-03-12 20:35:38] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.000216 train acc = 1.0000, test acc = 0.6487
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.81it/s]
+[2025-03-12 20:35:45] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.000247 train acc = 1.0000, test acc = 0.6529
+Evaluate 5 random ConvNet, mean = 0.6509 std = 0.0042
+-------------------------
+[2025-03-12 20:35:46] iter = 3500, loss = 0.8581
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:35:54] iter = 3510, loss = 0.4960
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:36:03] iter = 3520, loss = 0.9139
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:36:11] iter = 3530, loss = 0.8374
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:36:19] iter = 3540, loss = 0.8778
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:36:27] iter = 3550, loss = 0.7356
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:36:36] iter = 3560, loss = 0.5364
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:36:44] iter = 3570, loss = 0.4756
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:36:52] iter = 3580, loss = 0.8526
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:37:01] iter = 3590, loss = 0.9121
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 3600
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.03it/s]
+[2025-03-12 20:37:16] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.001758 train acc = 1.0000, test acc = 0.6608
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.39it/s]
+[2025-03-12 20:37:23] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000476 train acc = 1.0000, test acc = 0.6558
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.05it/s]
+[2025-03-12 20:37:30] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000981 train acc = 1.0000, test acc = 0.6612
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.56it/s]
+[2025-03-12 20:37:37] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000975 train acc = 1.0000, test acc = 0.6570
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.06it/s]
+[2025-03-12 20:37:44] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.000302 train acc = 1.0000, test acc = 0.6554
+Evaluate 5 random ConvNet, mean = 0.6580 std = 0.0025
+-------------------------
+[2025-03-12 20:37:45] iter = 3600, loss = 0.4647
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:37:54] iter = 3610, loss = 0.8522
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:38:02] iter = 3620, loss = 0.8175
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:38:10] iter = 3630, loss = 0.9265
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:38:18] iter = 3640, loss = 0.8875
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:38:26] iter = 3650, loss = 0.8923
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:38:35] iter = 3660, loss = 0.4924
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:38:43] iter = 3670, loss = 0.5114
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:38:51] iter = 3680, loss = 0.8663
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:38:59] iter = 3690, loss = 0.6163
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 3700
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.82it/s]
+[2025-03-12 20:39:14] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000439 train acc = 1.0000, test acc = 0.6444
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.45it/s]
+[2025-03-12 20:39:21] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000403 train acc = 1.0000, test acc = 0.6510
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.77it/s]
+[2025-03-12 20:39:28] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000403 train acc = 1.0000, test acc = 0.6540
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.45it/s]
+[2025-03-12 20:39:35] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000227 train acc = 1.0000, test acc = 0.6462
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.31it/s]
+[2025-03-12 20:39:42] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000290 train acc = 1.0000, test acc = 0.6533
+Evaluate 5 random ConvNet, mean = 0.6498 std = 0.0038
+-------------------------
+[2025-03-12 20:39:43] iter = 3700, loss = 0.6954
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:39:51] iter = 3710, loss = 0.8871
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:40:00] iter = 3720, loss = 0.6211
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:40:08] iter = 3730, loss = 0.7190
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:40:16] iter = 3740, loss = 0.6149
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:40:24] iter = 3750, loss = 0.7163
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:40:33] iter = 3760, loss = 0.5259
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:40:41] iter = 3770, loss = 0.8222
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:40:49] iter = 3780, loss = 0.8512
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:40:58] iter = 3790, loss = 0.8877
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 3800
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.76it/s]
+[2025-03-12 20:41:12] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000651 train acc = 1.0000, test acc = 0.6414
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.50it/s]
+[2025-03-12 20:41:19] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000262 train acc = 1.0000, test acc = 0.6335
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.85it/s]
+[2025-03-12 20:41:27] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000298 train acc = 1.0000, test acc = 0.6333
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.05it/s]
+[2025-03-12 20:41:34] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000951 train acc = 1.0000, test acc = 0.6523
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.76it/s]
+[2025-03-12 20:41:41] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000265 train acc = 1.0000, test acc = 0.6468
+Evaluate 5 random ConvNet, mean = 0.6415 std = 0.0074
+-------------------------
+[2025-03-12 20:41:42] iter = 3800, loss = 0.7373
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:41:50] iter = 3810, loss = 0.8666
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:41:58] iter = 3820, loss = 0.7296
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:42:06] iter = 3830, loss = 0.7187
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:42:15] iter = 3840, loss = 0.7397
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:42:23] iter = 3850, loss = 0.9042
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:42:31] iter = 3860, loss = 0.6421
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:42:40] iter = 3870, loss = 0.6048
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:42:48] iter = 3880, loss = 0.9115
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:42:57] iter = 3890, loss = 0.9017
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 3900
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.22it/s]
+[2025-03-12 20:43:11] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000358 train acc = 1.0000, test acc = 0.6449
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.23it/s]
+[2025-03-12 20:43:18] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000453 train acc = 1.0000, test acc = 0.6512
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.32it/s]
+[2025-03-12 20:43:25] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000176 train acc = 1.0000, test acc = 0.6497
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.91it/s]
+[2025-03-12 20:43:33] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.002650 train acc = 1.0000, test acc = 0.6417
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.47it/s]
+[2025-03-12 20:43:40] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.001494 train acc = 1.0000, test acc = 0.6530
+Evaluate 5 random ConvNet, mean = 0.6481 std = 0.0042
+-------------------------
+[2025-03-12 20:43:41] iter = 3900, loss = 0.9039
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:43:49] iter = 3910, loss = 0.7388
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:43:58] iter = 3920, loss = 0.7261
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:44:06] iter = 3930, loss = 0.7898
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:44:14] iter = 3940, loss = 0.6743
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:44:23] iter = 3950, loss = 0.6153
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:44:31] iter = 3960, loss = 0.5197
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:44:39] iter = 3970, loss = 0.7526
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:44:47] iter = 3980, loss = 0.7940
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:44:56] iter = 3990, loss = 0.6883
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 4000
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.74it/s]
+[2025-03-12 20:45:10] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.002703 train acc = 1.0000, test acc = 0.6486
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.47it/s]
+[2025-03-12 20:45:17] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000566 train acc = 1.0000, test acc = 0.6463
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.07it/s]
+[2025-03-12 20:45:24] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.002644 train acc = 1.0000, test acc = 0.6405
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.90it/s]
+[2025-03-12 20:45:31] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000286 train acc = 1.0000, test acc = 0.6475
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.78it/s]
+[2025-03-12 20:45:39] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000428 train acc = 1.0000, test acc = 0.6349
+Evaluate 5 random ConvNet, mean = 0.6436 std = 0.0052
+-------------------------
+[2025-03-12 20:45:40] iter = 4000, loss = 0.8710
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:45:48] iter = 4010, loss = 0.7292
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:45:56] iter = 4020, loss = 0.8683
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:46:05] iter = 4030, loss = 0.5454
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:46:13] iter = 4040, loss = 0.7430
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:46:21] iter = 4050, loss = 0.8121
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:46:29] iter = 4060, loss = 0.5612
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:46:37] iter = 4070, loss = 0.7973
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:46:46] iter = 4080, loss = 0.6093
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:46:54] iter = 4090, loss = 0.5180
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 4100
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.65it/s]
+[2025-03-12 20:47:08] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.000390 train acc = 1.0000, test acc = 0.6470
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.65it/s]
+[2025-03-12 20:47:15] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000252 train acc = 1.0000, test acc = 0.6525
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.38it/s]
+[2025-03-12 20:47:22] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000140 train acc = 1.0000, test acc = 0.6548
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.21it/s]
+[2025-03-12 20:47:29] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000417 train acc = 1.0000, test acc = 0.6516
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 146.29it/s]
+[2025-03-12 20:47:36] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.003014 train acc = 1.0000, test acc = 0.6546
+Evaluate 5 random ConvNet, mean = 0.6521 std = 0.0028
+-------------------------
+[2025-03-12 20:47:37] iter = 4100, loss = 0.6466
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:47:45] iter = 4110, loss = 0.5069
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:47:54] iter = 4120, loss = 0.5853
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:48:02] iter = 4130, loss = 0.8154
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:48:10] iter = 4140, loss = 0.8870
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:48:18] iter = 4150, loss = 0.7710
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:48:26] iter = 4160, loss = 0.6109
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:48:35] iter = 4170, loss = 0.7865
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:48:43] iter = 4180, loss = 0.7685
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:48:52] iter = 4190, loss = 0.6517
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 4200
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 148.07it/s]
+[2025-03-12 20:49:06] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.001125 train acc = 1.0000, test acc = 0.6345
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.45it/s]
+[2025-03-12 20:49:13] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000974 train acc = 1.0000, test acc = 0.6445
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.95it/s]
+[2025-03-12 20:49:20] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000419 train acc = 1.0000, test acc = 0.6459
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.84it/s]
+[2025-03-12 20:49:27] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.003739 train acc = 1.0000, test acc = 0.6523
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.64it/s]
+[2025-03-12 20:49:35] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000109 train acc = 1.0000, test acc = 0.6506
+Evaluate 5 random ConvNet, mean = 0.6456 std = 0.0062
+-------------------------
+[2025-03-12 20:49:35] iter = 4200, loss = 0.5883
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:49:44] iter = 4210, loss = 0.8909
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:49:53] iter = 4220, loss = 0.5076
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:50:01] iter = 4230, loss = 0.8824
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:50:09] iter = 4240, loss = 0.7799
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:50:17] iter = 4250, loss = 0.4638
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:50:26] iter = 4260, loss = 0.8776
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:50:34] iter = 4270, loss = 0.4726
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:50:42] iter = 4280, loss = 0.6680
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:50:50] iter = 4290, loss = 0.7071
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 4300
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 149.55it/s]
+[2025-03-12 20:51:04] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000484 train acc = 1.0000, test acc = 0.6497
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 140.24it/s]
+[2025-03-12 20:51:11] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000341 train acc = 1.0000, test acc = 0.6615
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.59it/s]
+[2025-03-12 20:51:18] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000700 train acc = 1.0000, test acc = 0.6572
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.37it/s]
+[2025-03-12 20:51:25] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.001875 train acc = 1.0000, test acc = 0.6481
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.19it/s]
+[2025-03-12 20:51:32] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.000460 train acc = 1.0000, test acc = 0.6503
+Evaluate 5 random ConvNet, mean = 0.6534 std = 0.0051
+-------------------------
+[2025-03-12 20:51:33] iter = 4300, loss = 0.9042
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:51:42] iter = 4310, loss = 0.8467
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:51:50] iter = 4320, loss = 0.7496
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:51:58] iter = 4330, loss = 0.6318
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:52:06] iter = 4340, loss = 0.7789
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:52:15] iter = 4350, loss = 0.7890
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:52:23] iter = 4360, loss = 0.8864
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:52:31] iter = 4370, loss = 0.5478
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:52:39] iter = 4380, loss = 0.6079
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:52:47] iter = 4390, loss = 0.6268
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 4400
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 147.46it/s]
+[2025-03-12 20:53:02] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000230 train acc = 1.0000, test acc = 0.6426
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 148.12it/s]
+[2025-03-12 20:53:08] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000572 train acc = 1.0000, test acc = 0.6559
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 146.38it/s]
+[2025-03-12 20:53:15] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000297 train acc = 1.0000, test acc = 0.6385
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.68it/s]
+[2025-03-12 20:53:22] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.002288 train acc = 1.0000, test acc = 0.6458
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.75it/s]
+[2025-03-12 20:53:29] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.000385 train acc = 1.0000, test acc = 0.6551
+Evaluate 5 random ConvNet, mean = 0.6476 std = 0.0069
+-------------------------
+[2025-03-12 20:53:30] iter = 4400, loss = 0.7857
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:53:38] iter = 4410, loss = 0.4398
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:53:47] iter = 4420, loss = 0.8021
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:53:56] iter = 4430, loss = 0.9129
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:54:04] iter = 4440, loss = 0.7511
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:54:13] iter = 4450, loss = 0.4707
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:54:21] iter = 4460, loss = 0.6129
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:54:30] iter = 4470, loss = 0.8620
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:54:38] iter = 4480, loss = 0.8958
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:54:46] iter = 4490, loss = 0.7945
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 4500
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 135.56it/s]
+[2025-03-12 20:55:01] Evaluate_00: epoch = 1000 train time = 7 s train loss = 0.001153 train acc = 1.0000, test acc = 0.6527
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.20it/s]
+[2025-03-12 20:55:09] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000267 train acc = 1.0000, test acc = 0.6523
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.95it/s]
+[2025-03-12 20:55:16] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000227 train acc = 1.0000, test acc = 0.6445
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 137.81it/s]
+[2025-03-12 20:55:23] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000574 train acc = 1.0000, test acc = 0.6504
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.58it/s]
+[2025-03-12 20:55:30] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000211 train acc = 1.0000, test acc = 0.6564
+Evaluate 5 random ConvNet, mean = 0.6513 std = 0.0039
+-------------------------
+[2025-03-12 20:55:31] iter = 4500, loss = 0.7676
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:55:40] iter = 4510, loss = 0.8972
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:55:48] iter = 4520, loss = 0.6731
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:55:56] iter = 4530, loss = 0.5559
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:56:04] iter = 4540, loss = 0.7340
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:56:13] iter = 4550, loss = 0.8257
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:56:21] iter = 4560, loss = 0.5688
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:56:29] iter = 4570, loss = 0.8534
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:56:37] iter = 4580, loss = 0.6194
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 20:56:45] iter = 4590, loss = 0.7883
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 4600
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.42it/s]
+[2025-03-12 20:57:00] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000180 train acc = 1.0000, test acc = 0.6365
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.53it/s]
+[2025-03-12 20:57:07] Evaluate_01: epoch = 1000 train time = 7 s train loss = 0.000227 train acc = 1.0000, test acc = 0.6266
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.68it/s]
+[2025-03-12 20:57:14] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000386 train acc = 1.0000, test acc = 0.6305
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.92it/s]
+[2025-03-12 20:57:21] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.000488 train acc = 1.0000, test acc = 0.6420
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.28it/s]
+[2025-03-12 20:57:28] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.003101 train acc = 1.0000, test acc = 0.6350
+Evaluate 5 random ConvNet, mean = 0.6341 std = 0.0053
+-------------------------
+[2025-03-12 20:57:29] iter = 4600, loss = 0.6380
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 20:57:38] iter = 4610, loss = 0.8977
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 20:57:46] iter = 4620, loss = 0.5294
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 20:57:54] iter = 4630, loss = 0.7743
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:58:02] iter = 4640, loss = 0.6109
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:58:11] iter = 4650, loss = 0.8522
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 20:58:19] iter = 4660, loss = 0.6571
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 20:58:27] iter = 4670, loss = 0.5119
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:58:35] iter = 4680, loss = 0.5967
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 20:58:44] iter = 4690, loss = 0.7919
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 4700
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 147.85it/s]
+[2025-03-12 20:58:58] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000777 train acc = 1.0000, test acc = 0.6361
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.74it/s]
+[2025-03-12 20:59:05] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.001480 train acc = 1.0000, test acc = 0.6385
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 149.19it/s]
+[2025-03-12 20:59:11] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.004817 train acc = 1.0000, test acc = 0.6445
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.27it/s]
+[2025-03-12 20:59:18] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.000534 train acc = 1.0000, test acc = 0.6328
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 138.31it/s]
+[2025-03-12 20:59:25] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.001204 train acc = 1.0000, test acc = 0.6297
+Evaluate 5 random ConvNet, mean = 0.6363 std = 0.0051
+-------------------------
+[2025-03-12 20:59:26] iter = 4700, loss = 0.7215
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 20:59:35] iter = 4710, loss = 0.4976
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 20:59:44] iter = 4720, loss = 0.5303
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 20:59:52] iter = 4730, loss = 0.4927
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 21:00:01] iter = 4740, loss = 0.4601
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 21:00:09] iter = 4750, loss = 0.7609
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 21:00:18] iter = 4760, loss = 0.8837
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 21:00:26] iter = 4770, loss = 0.8304
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 21:00:34] iter = 4780, loss = 0.9004
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 21:00:43] iter = 4790, loss = 0.4775
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 4800
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.21it/s]
+[2025-03-12 21:00:57] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000615 train acc = 1.0000, test acc = 0.6484
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 147.99it/s]
+[2025-03-12 21:01:04] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000367 train acc = 1.0000, test acc = 0.6439
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.40it/s]
+[2025-03-12 21:01:11] Evaluate_02: epoch = 1000 train time = 6 s train loss = 0.000511 train acc = 1.0000, test acc = 0.6492
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.66it/s]
+[2025-03-12 21:01:18] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.000402 train acc = 1.0000, test acc = 0.6550
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 146.28it/s]
+[2025-03-12 21:01:25] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.000515 train acc = 1.0000, test acc = 0.6491
+Evaluate 5 random ConvNet, mean = 0.6491 std = 0.0035
+-------------------------
+[2025-03-12 21:01:26] iter = 4800, loss = 0.7558
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+[2025-03-12 21:01:35] iter = 4810, loss = 0.8804
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 21:01:43] iter = 4820, loss = 0.4591
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 21:01:52] iter = 4830, loss = 0.6760
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 21:02:00] iter = 4840, loss = 0.8455
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 21:02:09] iter = 4850, loss = 0.9137
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 21:02:17] iter = 4860, loss = 0.6143
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 21:02:25] iter = 4870, loss = 0.9005
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 21:02:34] iter = 4880, loss = 0.8580
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 21:02:42] iter = 4890, loss = 0.6798
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_1.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 4900
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.79it/s]
+[2025-03-12 21:02:57] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000325 train acc = 1.0000, test acc = 0.6483
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 144.98it/s]
+[2025-03-12 21:03:03] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.002045 train acc = 1.0000, test acc = 0.6541
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 139.62it/s]
+[2025-03-12 21:03:11] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000267 train acc = 1.0000, test acc = 0.6415
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.24it/s]
+[2025-03-12 21:03:18] Evaluate_03: epoch = 1000 train time = 6 s train loss = 0.000733 train acc = 1.0000, test acc = 0.6439
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 142.62it/s]
+[2025-03-12 21:03:25] Evaluate_04: epoch = 1000 train time = 7 s train loss = 0.000263 train acc = 1.0000, test acc = 0.6451
+Evaluate 5 random ConvNet, mean = 0.6466 std = 0.0044
+-------------------------
+[2025-03-12 21:03:25] iter = 4900, loss = 0.4836
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_2.pt
+[2025-03-12 21:03:34] iter = 4910, loss = 0.5279
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_4.pt
+[2025-03-12 21:03:42] iter = 4920, loss = 0.8685
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_3.pt
+[2025-03-12 21:03:50] iter = 4930, loss = 0.8864
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_7.pt
+[2025-03-12 21:03:58] iter = 4940, loss = 0.5553
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_8.pt
+[2025-03-12 21:04:07] iter = 4950, loss = 0.6785
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+[2025-03-12 21:04:15] iter = 4960, loss = 0.4946
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_9.pt
+[2025-03-12 21:04:23] iter = 4970, loss = 0.9127
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_0.pt
+[2025-03-12 21:04:31] iter = 4980, loss = 0.5355
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_5.pt
+[2025-03-12 21:04:39] iter = 4990, loss = 0.7010
+loading file cifar10/expertdb/CIFAR10/ConvNet/replay_buffer_6.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 5000
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5, 'batchmode': False, 'latestseed': -1}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 147.11it/s]
+[2025-03-12 21:04:54] Evaluate_00: epoch = 1000 train time = 6 s train loss = 0.000225 train acc = 1.0000, test acc = 0.6447
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 143.60it/s]
+[2025-03-12 21:05:01] Evaluate_01: epoch = 1000 train time = 6 s train loss = 0.000229 train acc = 1.0000, test acc = 0.6365
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 141.45it/s]
+[2025-03-12 21:05:08] Evaluate_02: epoch = 1000 train time = 7 s train loss = 0.000577 train acc = 1.0000, test acc = 0.6271
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:07<00:00, 136.97it/s]
+[2025-03-12 21:05:15] Evaluate_03: epoch = 1000 train time = 7 s train loss = 0.002321 train acc = 1.0000, test acc = 0.6434
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:06<00:00, 145.84it/s]
+[2025-03-12 21:05:22] Evaluate_04: epoch = 1000 train time = 6 s train loss = 0.000208 train acc = 1.0000, test acc = 0.6443
+Evaluate 5 random ConvNet, mean = 0.6392 std = 0.0067
+-------------------------
+[2025-03-12 21:05:23] iter = 5000, loss = 0.8289

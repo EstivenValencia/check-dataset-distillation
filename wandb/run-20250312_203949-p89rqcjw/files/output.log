@@ -1,0 +1,160 @@
+Hyper-parameters:
+ {'_wandb': {}, 'dataset': 'CIFAR100', 'subset': 'imagenette', 'model': 'ConvNet', 'res': 128, 'ipc': 10, 'eval_mode': 'S', 'num_eval': 5, 'eval_it': 100, 'epoch_eval_train': 1000, 'Iteration': 5000, 'lr_img': 1000.0, 'lr_lr': 1e-05, 'lr_teacher': 0.01, 'lr_init': 0.01, 'batch_real': 256, 'batch_syn': 1000, 'batch_train': 256, 'pix_init': 'real', 'dsa': True, 'dsa_strategy': 'color_crop_cutout_flip_scale_rotate', 'data_path': 'cifar100/images_db', 'buffer_path': 'cifar100/expertdb', 'expert_epochs': 2, 'syn_steps': 20, 'max_start_epoch': 20, 'zca': True, 'load_all': False, 'no_aug': False, 'texture': False, 'canvas_size': 2, 'canvas_samples': 1, 'max_files': None, 'max_experts': None, 'force_save': False, 'device': 'cuda', 'zca_trans': ZCAWhitening(), 'im_size': [32, 32], 'dc_aug_param': None, 'dsa_param': <utils.ParamDiffAug object at 0x7f2a190a03d0>, 'distributed': False}
+Evaluation model pool:  ['ConvNet']
+BUILDING DATASET
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50000/50000 [00:00<00:00, 58474.95it/s]
+50000it [00:00, 4227191.55it/s]
+class c = 0: 500 real images
+class c = 1: 500 real images
+class c = 2: 500 real images
+class c = 3: 500 real images
+class c = 4: 500 real images
+class c = 5: 500 real images
+class c = 6: 500 real images
+class c = 7: 500 real images
+class c = 8: 500 real images
+class c = 9: 500 real images
+class c = 10: 500 real images
+class c = 11: 500 real images
+class c = 12: 500 real images
+class c = 13: 500 real images
+class c = 14: 500 real images
+class c = 15: 500 real images
+class c = 16: 500 real images
+class c = 17: 500 real images
+class c = 18: 500 real images
+class c = 19: 500 real images
+class c = 20: 500 real images
+class c = 21: 500 real images
+class c = 22: 500 real images
+class c = 23: 500 real images
+class c = 24: 500 real images
+class c = 25: 500 real images
+class c = 26: 500 real images
+class c = 27: 500 real images
+class c = 28: 500 real images
+class c = 29: 500 real images
+class c = 30: 500 real images
+class c = 31: 500 real images
+class c = 32: 500 real images
+class c = 33: 500 real images
+class c = 34: 500 real images
+class c = 35: 500 real images
+class c = 36: 500 real images
+class c = 37: 500 real images
+class c = 38: 500 real images
+class c = 39: 500 real images
+class c = 40: 500 real images
+class c = 41: 500 real images
+class c = 42: 500 real images
+class c = 43: 500 real images
+class c = 44: 500 real images
+class c = 45: 500 real images
+class c = 46: 500 real images
+class c = 47: 500 real images
+class c = 48: 500 real images
+class c = 49: 500 real images
+class c = 50: 500 real images
+class c = 51: 500 real images
+class c = 52: 500 real images
+class c = 53: 500 real images
+class c = 54: 500 real images
+class c = 55: 500 real images
+class c = 56: 500 real images
+class c = 57: 500 real images
+class c = 58: 500 real images
+class c = 59: 500 real images
+class c = 60: 500 real images
+class c = 61: 500 real images
+class c = 62: 500 real images
+class c = 63: 500 real images
+class c = 64: 500 real images
+class c = 65: 500 real images
+class c = 66: 500 real images
+class c = 67: 500 real images
+class c = 68: 500 real images
+class c = 69: 500 real images
+class c = 70: 500 real images
+class c = 71: 500 real images
+class c = 72: 500 real images
+class c = 73: 500 real images
+class c = 74: 500 real images
+class c = 75: 500 real images
+class c = 76: 500 real images
+class c = 77: 500 real images
+class c = 78: 500 real images
+class c = 79: 500 real images
+class c = 80: 500 real images
+class c = 81: 500 real images
+class c = 82: 500 real images
+class c = 83: 500 real images
+class c = 84: 500 real images
+class c = 85: 500 real images
+class c = 86: 500 real images
+class c = 87: 500 real images
+class c = 88: 500 real images
+class c = 89: 500 real images
+class c = 90: 500 real images
+class c = 91: 500 real images
+class c = 92: 500 real images
+class c = 93: 500 real images
+class c = 94: 500 real images
+class c = 95: 500 real images
+class c = 96: 500 real images
+class c = 97: 500 real images
+class c = 98: 500 real images
+class c = 99: 500 real images
+real images channel 0, mean = 0.0000, std = 0.2707
+real images channel 1, mean = 0.0000, std = 0.2555
+real images channel 2, mean = 0.0000, std = 0.2647
+initialize synthetic data from random real images
+[2025-03-12 20:39:51] training begins
+Expert Dir: cifar100/expertdb/CIFAR100/ConvNet
+loading file cifar100/expertdb/CIFAR100/ConvNet/replay_buffer_8.pt
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 0
+DSA augmentation strategy:
+ color_crop_cutout_flip_scale_rotate
+DSA augmentation parameters:
+ {'aug_mode': 'S', 'prob_flip': 0.5, 'ratio_scale': 1.2, 'ratio_rotate': 15.0, 'ratio_crop_pad': 0.125, 'ratio_cutout': 0.5, 'ratio_noise': 0.05, 'brightness': 1.0, 'saturation': 2.0, 'contrast': 0.5}
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [01:00<00:00, 16.49it/s]
+[2025-03-12 20:40:53] Evaluate_00: epoch = 1000 train time = 60 s train loss = 0.010115 train acc = 0.9990, test acc = 0.1857
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [01:00<00:00, 16.48it/s]
+[2025-03-12 20:41:53] Evaluate_01: epoch = 1000 train time = 60 s train loss = 0.013398 train acc = 1.0000, test acc = 0.1930
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:59<00:00, 16.80it/s]
+[2025-03-12 20:42:53] Evaluate_02: epoch = 1000 train time = 59 s train loss = 0.029348 train acc = 1.0000, test acc = 0.1893
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [01:00<00:00, 16.50it/s]
+[2025-03-12 20:43:54] Evaluate_03: epoch = 1000 train time = 60 s train loss = 0.025253 train acc = 0.9980, test acc = 0.1867
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1001/1001 [00:59<00:00, 16.72it/s]
+[2025-03-12 20:44:54] Evaluate_04: epoch = 1000 train time = 59 s train loss = 0.006984 train acc = 1.0000, test acc = 0.1945
+Evaluate 5 random ConvNet, mean = 0.1898 std = 0.0034
+-------------------------
+Peso en memoria: 4035360 bytes (3940.78 KB, 3.85 MB)
+Peso en memoria: 6053040 bytes (5911.17 KB, 5.77 MB)
+Peso en memoria: 8070720 bytes (7881.56 KB, 7.70 MB)
+Peso en memoria: 10088400 bytes (9851.95 KB, 9.62 MB)
+Peso en memoria: 12106080 bytes (11822.34 KB, 11.55 MB)
+Peso en memoria: 14123760 bytes (13792.73 KB, 13.47 MB)
+Peso en memoria: 16141440 bytes (15763.12 KB, 15.39 MB)
+Peso en memoria: 18159120 bytes (17733.52 KB, 17.32 MB)
+Peso en memoria: 20176800 bytes (19703.91 KB, 19.24 MB)
+Peso en memoria: 22194480 bytes (21674.30 KB, 21.17 MB)
+Peso en memoria: 24212160 bytes (23644.69 KB, 23.09 MB)
+Peso en memoria: 26229840 bytes (25615.08 KB, 25.01 MB)
+Peso en memoria: 28247520 bytes (27585.47 KB, 26.94 MB)
+Peso en memoria: 30265200 bytes (29555.86 KB, 28.86 MB)
+Peso en memoria: 32282880 bytes (31526.25 KB, 30.79 MB)
+Traceback (most recent call last):
+  File "/data/home/rtabares/.juan/mtt-distillation/distill.py", line 486, in <module>
+    main(args)
+  File "/data/home/rtabares/.juan/mtt-distillation/distill.py", line 370, in main
+    grad = torch.autograd.grad(ce_loss, student_params[-1], create_graph=True)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/home/rtabares/.juan/env/lib/python3.11/site-packages/torch/autograd/__init__.py", line 496, in grad
+    result = _engine_run_backward(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/home/rtabares/.juan/env/lib/python3.11/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 500.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 437.50 MiB is free. Including non-PyTorch memory, this process has 47.02 GiB memory in use. Of the allocated memory 44.83 GiB is allocated by PyTorch, and 1.03 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
